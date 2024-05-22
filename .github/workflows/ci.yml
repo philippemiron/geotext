@@ -25,6 +25,9 @@ jobs:
       - name: Install the latest version of rye
         uses: eifinger/setup-rye@v3
       - name: Rye sync
-        run: rye sync
+        run: |
+            rye config --set-bool behavior.use-uv=true
+            rye sync
       - name: Run unit tests
+        shell: bash -l {0}
         run: pytest -c pyproject.toml
