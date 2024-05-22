@@ -22,6 +22,9 @@ jobs:
         python-version: ["3.10", "3.11", "3.12"]
     steps:
       - uses: actions/checkout@v4
+      - name: Install the latest version of rye
+        uses: eifinger/setup-rye@v3
+      - name: Rye sync
+        run: rye sync
       - name: Run unit tests
-        shell: bash -l {0}
         run: pytest -c pyproject.toml
